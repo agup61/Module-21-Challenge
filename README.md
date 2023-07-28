@@ -1,53 +1,56 @@
-# Module-21-Challenge
+# Module_21_Deep-Learning-Challenge
 
-# Alphabet Soup Deep Learning Model for Funding Success Prediction
+This repository contains the code and files for creating a binary classification model to predict if an Alphabet Soup-funded organisation will be successful based on the features in the dataset. The dataset was provided as a CSV file, which contains information about more than 34,000 organisations that have received funding from the fictional foundation, along with several columns of metadata about each organisation.
 
-## Overview of the Analysis
+## Getting Started
+To use the code in this repository, follow the steps below:
 
-The purpose of this analysis is to create a binary classification model using deep learning techniques to predict if an organization funded by Alphabet Soup will be successful in their venture. The model utilizes a dataset of over 34,000 organizations that have received funding from Alphabet Soup, containing metadata about each organization.
+### Step 1: Preprocess the Data
+1) Read in the charity_data.csv file to a Pandas DataFrame.
+2) Identify the target variable(s) and the feature(s) for your model.
+3) Drop the EIN and NAME columns from the dataset.
+4) Determine the number of unique values for each column.
+5) For columns with more than 10 unique values, bin "rare" categorical variables together in a new value, Other.
+6) Use pd.get_dummies() to encode categorical variables.
+7) Split the preprocessed data into features array (X) and target array (y).
+8) Split the data into training and testing datasets using the train_test_split function.
+9) Scale the training and testing features datasets using scikit-learn's StandardScaler.
 
-## Results
+### Step 2: Compile, Train, and Evaluate the Model
+1) Using TensorFlow and Keras, design a neural network model for binary classification.
+2) Determine the number of input features and nodes for each layer in your model.
+3) Create the first hidden layer with an appropriate activation function.
+4) Add a second hidden layer with an appropriate activation function if necessary.
+5) Create an output layer with an appropriate activation function for binary classification.
+6) Compile and train the model, and evaluate its loss and accuracy using the test data.
+7) Create a callback to save the model's weights every five epochs.
+8) Save the trained model to an HDF5 file named "AlphabetSoupCharity.h5".
 
-### Data Preprocessing
+### Step 3: Optimise the Model
+1) Create a new Jupyter Notebook named "AlphabetSoupCharity_Optimisation.ipynb".
+2) Import the necessary dependencies and read in the charity_data.csv to a Pandas DataFrame.
+3) Preprocess the dataset as in Step 1, and make any necessary adjustments that came out of optimising the model.
+4) Design a new neural network model that achieves higher than 75% accuracy for binary classification.
+5) Save and export the optimised model's weights to an HDF5 file named "AlphabetSoupCharity_Optimisation.h5".
 
-- **Target variable(s) for the model:** The target variable for the model is `IS_SUCCESSFUL`.
-- **Feature variable(s) for the model:** The feature variables for the model include `APPLICATION_TYPE`, `AFFILIATION`, `CLASSIFICATION`, `USE_CASE`, `ORGANIZATION`, `STATUS`, `INCOME_AMT`, `SPECIAL_CONSIDERATIONS`, and `ASK_AMT`. 
-- **Variable(s) removed from the input data:** The `EIN` and `NAME` columns were removed from the input data as they are identification columns and not useful as features or targets.
+### Step 4: Write a Report on the Neural Network Model
+Please refer to the attached PDF file within the repository called "AlphabetSoupAnalysisReport.pdf"
 
-- **Feature variable** `NAME` has been brought back in the last model.
+## Dataset
+The dataset used for this project is available in the "charity_data.csv" file. The CSV file contains information about organisations that received funding from the Alphabet Soup foundation, along with various features and metadata about each organisation.
 
-### Compiling, Training, and Evaluating the Model
+## Requirements
+To run the code in this repository, you'll need the following dependencies:
+* Pandas
+* NumPy
+* TensorFlow
+* Scikit-learn
 
-- **Neurons, layers, and activation functions selected for the neural network model and rationale:** The model consists of three hidden layers with 80, 30, and 1 neurons, respectively, and ReLU activation functions. The output layer uses a sigmoid activation function for binary classification. The structure was chosen to provide a balance between complexity and the potential for overfitting, while maintaining the ability to learn complex patterns in the data.
+Instructions for Running the Code
+Clone this repository to your local machine.
+Make sure you have all the required dependencies installed in your environment.
+Run the Jupyter Notebook files in order, starting with "AlphabetSoupCharity.ipynb" for data preprocessing, model training, and evaluation, and then "AlphabetSoupCharity_Optimisation.ipynb" and "AlphabetSoupCharity_Optimisationv2.ipynb" for model optimisations that were undertaken.
 
-This model did not achive desired accuracy of 75%. 
-<img width="485" alt="Screenshot 2023-04-27 at 10 37 33 pm" src="https://user-images.githubusercontent.com/117792685/234865887-77b6367f-9b9b-4628-b0ee-ee7bf1b45db6.png">
-
-In this project, we ran about 7 models. The first few models removed the EIN and NAME columns and with applying difirrent neurons and layers and binning just achived accuracy of 73%.
-
-Model "3-AlphabetSoupCharity_Optimisation" has the best accuracy of 78.85%.
-<img width="482" alt="Screenshot 2023-04-27 at 10 37 25 pm" src="https://user-images.githubusercontent.com/117792685/234866318-e80f5f4a-bc89-43b5-bcae-2a1b9517d37c.png">
-
-Our **Feature variable(s) for the model:** The feature variables for the model include `APPLICATION_TYPE`, `AFFILIATION`, `CLASSIFICATION`, `USE_CASE`, `ORGANIZATION`, `STATUS`, `INCOME_AMT`, `SPECIAL_CONSIDERATIONS`, `NAME` and `ASK_AMT`. and **Target variable(s) for the model:** The target variable for the model is `IS_SUCCESSFUL`. The model consists of three hidden layers with 14, 7, and 1 neurons, respectively, The output layer uses a sigmoid activation function for binary classification and used Relu for other layers.
-<img width="595" alt="Screenshot 2023-04-27 at 10 37 20 pm" src="https://user-images.githubusercontent.com/117792685/234866452-5839f16d-3ea7-428b-899f-989777193357.png">
-
-
-- **Achievement of the target model performance:** The model did achieve the target performance of 78.85% accuracy. However, multiple attempts were made to optimize the model, including adjusting input data, modifying the structure of the neural network, and modifying the training regimen.
-
-- **Steps taken in attempts to increase model performance:** To increase model performance, the following steps were taken:
-
-  - Dropping additional irrelevant columns from the input data.
-  - Creating more bins for rare occurrences in columns and adjusting the number of values for each bin.
-  - Adding more neurons to a hidden layer.
-  - Adding or removing hidden layers.
-  - Using different activation functions for the hidden layers.
-  - Increasing or decreasing the number of epochs in the training regimen.
-
-### Summary
-
-The deep learning model achieved the desired performance of 78.84% accuracy in predicting the success of Alphabet Soup-funded organizations. Several attempts were made to optimize the model through data preprocessing and neural network structure adjustments, ultimately leading to this improved performance.
-
-As an alternative recommendation, a Random Forest Classifier or a Gradient Boosting Classifier could be used to solve this classification problem. These ensemble learning methods have the potential to provide better accuracy and generalization without being as prone to overfitting as deep learning models. Further exploration of these alternative models may lead to even better performance in predicting the success of funded organizations.
-
-
+## Resources
+* IRS. Tax Exempt Organization Search Bulk Data Downloads. https://www.irs.gov/Links to an external site.
 
